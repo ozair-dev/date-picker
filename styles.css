@@ -1,0 +1,272 @@
+html{
+  font-size: 10px;
+  box-sizing: border-box;
+  font-family: monospace;
+}
+html,body{
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+body{
+  background-color: #9c27b0;
+  user-select: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+p{
+  margin: 0;
+}
+*, *::before,*::after{
+  box-sizing: inherit;
+}
+
+h1{
+  color: white;
+  font-size: 5rem;
+  font-family: monospace;
+  text-align: center;
+}
+
+#date-picker{
+  position: relative;
+  font-size: 4rem;
+  color: white;
+  background-color: hsl(291deg 64% 57%);
+  padding: 0.5rem 1rem;
+  /* margin: auto; */
+  border-radius: 0.5rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  overflow: hidden;
+}
+
+#date-picker::after{
+  position: absolute;
+  font-family: "Font Awesome 6 Free";
+	font-weight: 400;
+  content: "\f073";
+  width:  100%;
+  height: 100%;
+  text-align: center;
+  background-color: hsl(291deg 64% 57%);
+  opacity: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: opacity 0.2s;
+}
+
+#date-picker:hover::after{
+  opacity: 0.9;
+}
+
+#date-picker > p{
+  padding: 1rem;
+  flex: 1;
+  text-align: center;
+}
+
+#date-picker > p:nth-child(1){
+  border-right: 1px solid gray;
+}
+#date-picker > p:nth-child(3){
+  border-left: 1px solid gray;
+}
+
+#calender{
+  color: white;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  background-color: hsla(180, 25%, 25%,1);
+  border-radius: 1rem;
+  padding: 0 1rem;
+  overflow: hidden;
+  transition: transform 0.3s;
+}
+#calender.visible{
+  transform: translate(-50%, -50%) scale(1);
+}
+
+#calender > nav{
+  display: flex;
+  padding: 1rem 0.2rem;
+}
+
+#calender > nav > button{
+  background: hsla(180, 25%, 27%,1);
+  border: none;
+  border-radius: 0.5rem;
+  color: white;
+}
+
+#calender > nav > button:hover{
+  background-color: hsla(180, 25%, 30%,1);
+}
+
+.calender_nav_div{
+  display: flex;
+  justify-content:center;
+  flex: 1;
+}
+
+.calender_nav_month_button{
+  margin-right: 1rem;
+}
+.calender_nav_month_button, .calender_nav_year_button{
+  color: white;
+  background: hsla(180, 25%, 29%,1);
+  border-radius: 1rem;
+  border: none;
+  font-size: 1.5rem;
+}
+
+.calender_nav_month_button:hover, .calender_nav_year_button:hover{
+  background: hsla(180, 25%, 35%,1);
+}
+
+.calender_hide{
+  background: transparent;
+  padding: 0;
+  border: none;
+}
+
+.calender_hide::after{
+  padding: 0.4rem;
+  border-radius: 50%;
+  color: white;
+  font-family: "Font Awesome 6 Free";
+	font-weight: 400;
+  font-size: 1rem;
+  content: "\58";
+  transition: background 0.2s;
+  cursor: pointer;
+}
+.calender_hide:hover::after{
+  background: chocolate;
+}
+
+
+.calender_body{
+  height: 26.5rem;
+  width: 25rem;
+}
+
+.calender_body_dates{
+  display: none;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;;
+}
+.calender_body_dates.visible{
+  display: flex;
+}
+
+.calender_body_month_days{
+  height: 1.5rem;
+  font-size: 1.3rem;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  align-items: center;
+  justify-items: center;
+  grid-gap: 0.3rem;
+}
+.calender_body_month_days p {
+  box-shadow: 0 0 1px #ffffff8a;
+  padding: 0 0.5rem;
+  text-align: center;
+}
+
+.calender_body_month_dates{
+  position: relative;
+  width: 100%;
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-template-rows: repeat(6, 1fr);
+  justify-items: center;
+  align-items: center;
+}
+
+.calender_body_month_dates p{
+  color: white;
+  text-align: center;
+  width: 2.4rem;
+  padding: 0.7rem;
+  border-radius: 50%;
+  background-color: hsla(180, 25%, 27%,1);
+  z-index: 1;
+  transition: background-color 0.2s;
+}
+
+.calender_body_month_dates p.current{
+  background-color: hsla(180, 25%, 32%,1);
+}
+.calender_body_month_dates p.highlighted{
+  background: transparent;
+}
+.calender_body_month_dates p.disabled{
+  color: gray;
+}
+
+.calender_body_month_dates p:hover{
+  background-color: hsla(180, 25%, 32%,1);
+}
+.calender_body_month_dates p.disabled:hover{
+  background-color: hsla(180, 25%, 27%,1);
+}
+.calender_body_month_dates p.highlighted:hover{
+  background-color: transparent;
+}
+
+.date_highlighter{
+  width: 0;
+  height: 0;
+  background-color: chocolate;
+  border-radius: 50%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: 0.2s;
+}
+
+.calender_body_months, .calender_body_years{
+  display: none;
+  width: 100%;
+  height: 100%;
+}
+
+.calender_body_years button, .calender_body_months button{
+  width: 85%;
+  height: 80%;
+  border: none;
+  border-radius: 0.5rem;
+  color: white;
+  background-color: hsla(180, 25%, 27%,1);
+}
+.calender_body_years.visible button.current, .calender_body_months button.current{
+  background-color: hsla(180, 25%, 32%,1);
+}
+.calender_body_years.visible button:hover, .calender_body_months button.hover{
+  background-color: hsla(180, 25%, 32%,1);
+}
+
+.calender_body_months.visible{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  justify-items: center;
+  align-items: center;
+}
+.calender_body_years.visible{
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  justify-items: center;
+  align-items: center;
+}

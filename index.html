@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <title>Picker</title>
+</head>
+<body>
+  <!-- <h1>Date Picker</h1> -->
+  <div id="date-picker">
+    <p class="date_date"></p>
+    <p class="date_month"></p>
+    <p class="date_year"></p>
+  </div>
+  <div id="calender">
+    <nav data-clicked="false">
+      <button data-op="-" title="previous" class="inc_dec_nav_button fa-solid fa-angles-left"></button>
+      <div class="calender_nav_div">
+        <button class="calender_nav_month_button"></button>
+        <button class="calender_nav_year_button"></button>
+      </div>
+      <button data-op="+" title="next" class="inc_dec_nav_button fa-solid fa-angles-right"></button>
+      <!-- <button class="calender_hide"></button> -->
+    </nav>
+    <div class="calender_body">
+      <div class="calender_body_dates visible">
+        <div class="calender_body_month_days">
+          <p>Sun</p><p>Mon</p><p>Tue</p><p>Wed</p><p>Thu</p><p>Fri</p><p>Sat</p>
+        </div>
+        <div class="calender_body_month_dates"><span data-isFresh="true" class="date_highlighter"></span></div>
+      </div>
+      <div class="calender_body_months"></div>
+      <div class="calender_body_years"></div>
+    </div>
+  </div>
+
+  <script src="./Calender.js"></script>
+  <script src="./index.js" defer></script>
+
+</body>
+</html>
